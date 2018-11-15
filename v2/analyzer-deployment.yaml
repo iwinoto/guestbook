@@ -23,10 +23,12 @@ spec:
             cpu: 100m
             memory: 100Mi
         env:
-        #- name: VCAP_SERVICES_TONE_ANALYZER_0_CREDENTIALS_USERNAME
-        #  value: "..."
-        #- name: VCAP_SERVICES_TONE_ANALYZER_0_CREDENTIALS_PASSWORD
-        #  value: "..."
+        - name: VCAP_SERVICES_TONE_ANALYZER_0_CREDENTIALS_USERNAME
+          value: apikey
+        - name: VCAP_SERVICES_TONE_ANALYZER_0_CREDENTIALS_PASSWORD
+          value: <<Service API Key>>
+        - name: VCAP_SERVICES_TONE_ANALYZER_0_CREDENTIALS_URL
+          value: gateway-syd.watsonplatform.net/tone-analyzer/api
         - name: USE_HTTPS
           value: "True"
         ports:

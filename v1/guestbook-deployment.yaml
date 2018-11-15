@@ -6,7 +6,7 @@ metadata:
     app: guestbook
     version: "1.0"
 spec:
-  replicas: 3
+  replicas: 2
   selector:
     matchLabels:
       app: guestbook
@@ -16,6 +16,18 @@ spec:
         app: guestbook
         version: "1.0"
     spec:
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - weight: 100
+            podAffinityTerm:
+              labelSelector:
+                matchExpressions:
+                - key: app
+                  operator: In
+                  values:
+                  - guestbook
+              topologyKey: kubernetes.io/hostname
       containers:
       - name: guestbook
         image: ibmcom/guestbook:v1
